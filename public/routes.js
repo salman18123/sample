@@ -1,0 +1,18 @@
+myapp.config(['$routeProvider',function($routeProvider){
+    $routeProvider
+    .when('/',{
+        templateUrl:'views/loginview.html',
+        controller:'logincontroller',
+        controllerAs:'login'
+    })
+    .when('/home',{
+        templateUrl:'views/homeview.html',
+        controller:'homecontroller',
+        controllerAs:'home'
+    })
+    .when('/search',{
+        templateUrl:'views/searchview.html',
+        controller:'searchcontroller',
+        controllerAs:'search'
+    })
+}])
