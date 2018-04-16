@@ -49,7 +49,7 @@ route.get('/search/:thing',(req,res)=>{
 route.get('/recommend/:userId',(req,res)=>{
     skus.findAll({
         where:{
-            SKU:{
+            sku:{
                 $in:[sequelize.literal(`SELECT sku FROM browses AS browses WHERE browses.userid='`+req.params.userId+`' ORDER BY browses.sku DESC`)]
             }
         },
@@ -68,7 +68,7 @@ route.get('/recommend/:userId',(req,res)=>{
 route.get('/recommendpurchases',(req,res)=>{
     skus.findAll({
         where:{
-            SKU:{
+            sku:{
                 $in:[sequelize.literal(`SELECT sku FROM purchases AS purchases ORDER BY purchases.sku DESC`)]
             }
         },
