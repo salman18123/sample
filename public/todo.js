@@ -87,13 +87,8 @@ myapp.controller('searchcontroller',['$location','$http',function($location,$htt
       
         main.data= text;
         
-        $.get(`api/search/${text}`,function(data){
-            console.log(data)
-            if(data==null){
-
-            }
-        })
-        $.get(`/api/search/${text}`)
+       
+        $http.get(`/api/search/${text}`)
         .then((response)=>{
             main.searchedata=response.data
             console.log(main.searchedata)
