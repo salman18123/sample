@@ -1,14 +1,16 @@
 <div class="well well-sm">
     <input type="text" ng-model="search.data">
     <button class="btn btn-secondary" ng-click="search.searching()">search</button>
+    <button class="btn btn-secondary" ng-click="search.listening()">Audiosearch</button>
+    
 
-    <div class="card-group">
-            <div class="card" ng-repeat="datas in search.searchedata">
+    
+            <div class="card" style="width:350px;height:350px;display:flex" ng-repeat="datas in search.searchedata" >
                 <h6>{{datas.SKU}}</h6>
                 <h6>{{datas.categorydescription}}</h6>   
                 <h6>{{datas.description}}</h6>  
             </div>
-        </div>
+        
     
 
 

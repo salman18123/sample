@@ -54,6 +54,11 @@ $http.get('/api/recommendpurchases')
 }])
 myapp.controller('searchcontroller',['$location','$http',function($location,$http){
     var main=this;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
     this.searchedata=null
     this.searching=function(){
         main.searchedata=null
@@ -66,4 +71,47 @@ myapp.controller('searchcontroller',['$location','$http',function($location,$htt
         })
 
     }
+    this.listening=function(){
+        recognition.start()
+    }
+    recognition.addEventListener('speechstart', () => {
+        console.log('Speech has been detected.');
+      });
+      
+      recognition.addEventListener('result', (e) => {
+        console.log('Result has been detected.');
+      
+        let last = e.results.length - 1;
+        let text = e.results[last][0].transcript;
+        console.log(text)
+      
+        main.data= text;
+        
+        $.get(`api/search/${text}`,function(data){
+            console.log(data)
+            if(data==null){
+
+            }
+        })
+        $.get(`/api/search/${text}`)
+        .then((response)=>{
+            main.searchedata=response.data
+            console.log(main.searchedata)
+
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+        console.log(main.data)
+        console.log('Confidence: ' + e.results[0][0].confidence);
+      
+        
+      });
+      recognition.addEventListener('speechend', () => {
+        recognition.stop();
+      });
+      recognition.addEventListener('error', (e) => {
+        console.log(e)
+      });
 }])
