@@ -28,12 +28,12 @@ route.get('/search/:thing',(req,res)=>{
             $or:[
                 {
                     description:{
-                        $iLike:`%${req.params.thing}%`
+                        $ilike:`%${req.params.thing}%`
                     }
                 },
                 {
                     categorydescription:{
-                        $iLike:`%${req.params.thing}%`
+                        $ilike:`%${req.params.thing}%`
                     }
                 }
             ]
