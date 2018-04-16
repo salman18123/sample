@@ -10,7 +10,7 @@ const users=require('./db').users
 route.post('/login',(req,res)=>{
     users.findOne({
         where:{
-            User_id:req.body.userid
+            userid:req.body.userid
         }
     })
     .then((data)=>{
@@ -27,12 +27,12 @@ route.get('/search/:thing',(req,res)=>{
         where:{
             $or:[
                 {
-                    Description:{
+                    description:{
                         $like:`%${req.params.thing}%`
                     }
                 },
                 {
-                    Category_Description:{
+                    categorydescription:{
                         $like:`%${req.params.thing}%`
                     }
                 }
@@ -50,7 +50,7 @@ route.get('/recommend/:userId',(req,res)=>{
     skus.findAll({
         where:{
             SKU:{
-                $in:[sequelize.literal(`SELECT SKU FROM browses AS browses WHERE browses.User_id='`+req.params.userId+`' ORDER BY browses.SKU DESC`)]
+                $in:[sequelize.literal(`SELECT sku FROM browses AS browses WHERE browses.userid='`+req.params.userId+`' ORDER BY browses.sku DESC`)]
             }
         },
         limit:5
@@ -69,7 +69,7 @@ route.get('/recommendpurchases',(req,res)=>{
     skus.findAll({
         where:{
             SKU:{
-                $in:[sequelize.literal(`SELECT SKU FROM purchases AS purchases ORDER BY purchases.SKU DESC`)]
+                $in:[sequelize.literal(`SELECT sku FROM purchases AS purchases ORDER BY purchases.sku DESC`)]
             }
         },
         limit:5

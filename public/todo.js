@@ -13,7 +13,7 @@ myapp.controller('logincontroller',['$location','$http','$rootScope','$sessionSt
          if(response.data.user){
              recappservice.loggedin.x=true
              console.log(recappservice.loggedin.x)
-             recappservice.loggedin.userid=response.data.user.User_id  
+             recappservice.loggedin.userid=response.data.user.userid  
              console.log(recappservice.loggedin.userid)
              $location.path('/home')
 

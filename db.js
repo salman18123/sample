@@ -22,48 +22,48 @@ else{
 
 
 const users=db.define('users',{
-    User_id:{
+    userid:{
         type:Sequelize.STRING,
         unique:false
     },
-    Age:{
+    age:{
         type:Sequelize.STRING
     }
 })
 const browses=db.define('browses',{
-    User_id:{
+    userid:{
         type:Sequelize.STRING
     },
-    Date:{
+    date:{
         type:Sequelize.STRING
     },
-  SKU:{
+  sku:{
       type:Sequelize.STRING
   }
 
     
 })
 const purchases=db.define('purchases',{
-    User_id:{
+    userid:{
         type:Sequelize.STRING
     },
-    Date:{
+    date:{
         type:Sequelize.STRING
     },
-  SKU:{
+    sku:{
       type:Sequelize.STRING
   }
 
     
 })
 const skus=db.define('skus',{
-    SKU:{
+    sku:{
         type:Sequelize.STRING
     },
-    Description:{
+    description:{
         type:Sequelize.STRING
     },
-    Category_Description:{
+    categorydescription:{
         type:Sequelize.STRING
     }
 
